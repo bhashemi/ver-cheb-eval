@@ -1,4 +1,4 @@
-# ver-cheb-eval
+# ver-cheb-sum-eval
 Verified evaluation of finite Chebyshev expansions
 =============================
 This repository contains implementation of ten different algorithms for computing narrow enclosures for finite Chebyshev expansions. While some of the algorithms are already known, the mathematics behind new algorithms is described in an accompanying preprient. 
