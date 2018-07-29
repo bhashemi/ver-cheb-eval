@@ -8,7 +8,7 @@ The problem of computing enclosures for Chebyshev exapnsions arises in the conte
 Requirements
 =============================
 
-Beyond MATLAB, INTLAB is needed to run the codes in this repository. INTLAB is a MATLAB toolbox for verified computations developed by Rump at the University of Hamburg. To run the examples you also need Chebfun, a MATLAB package for numerical computing with functions developed at the University of Oxford.
+Beyond MATLAB, INTLAB is needed to run the codes in this repository. INTLAB is a MATLAB toolbox for verified computations developed by Rump at the University of Hamburg. To run the examples provided in this repository, you also need Chebfun, a MATLAB package for numerical computing with functions developed at the University of Oxford.
 
 License
 =============================
