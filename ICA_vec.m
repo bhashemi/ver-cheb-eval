@@ -1,6 +1,5 @@
 function p= ICA_vec(t, intCoeffs)
-% Naiive extension of Clenshaw to interval arithmetic. This is done e.g., 
-% in Joldes' PhD thesis.
+% Direct extension of Clenshaw algorithm to interval arithmetic.
 p = clenshaw_vec(intval(t), intCoeffs); 
 end
 
@@ -11,7 +10,7 @@ function p = clenshaw_vec(x, coeffs)
 
 bk1 = 0*x; % intervals
 bk2 = bk1; % intervals
-x2 = 2*x;  
+x2 = 2*x;  % error-free
 len = size(coeffs,1); % degree of poly
 
 for k = len:-1:1
