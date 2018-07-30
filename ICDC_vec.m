@@ -1,4 +1,7 @@
 function [z, bInt] = ICDC_vec(t, coeffs, prec)
+% ICDC = Interval Clenshaw with defect correction. 
+% The input prec should be either 'double' for double precision, 
+% or 'quad' for quadruple precision enclosure of the defect. 
 
 %% Step 1: Floating point approximation to ptilde = p(t) using Clenshaw: 
 % approximately solve A x b = coeffs
