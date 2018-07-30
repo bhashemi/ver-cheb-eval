@@ -244,5 +244,3 @@ newXTick=linspace(xMin,xMax,i);
 set(gca,'xtick',1:i);
 ax.XTickLabelRotation = 90;
 text(-22.5,0.19,['degree = ' num2str(size(intCoeffs,1)-1) ',  rad(c) = ' num2str(maxrad_coeffs,2) ',    l = ' num2str(l) ',   rad(x) = ' num2str(maxrad_pts,2)], FS, fs)
-shg
-print(gcf,'-depsc','/Users/user/Desktop/My work/git/ver-cheb-eval/draft/figures/ex346_new');
