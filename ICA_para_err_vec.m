@@ -87,7 +87,6 @@ function [AI1, AI2, AI3, AI4] = exactInv(A1, A2, A3, A4)
 % If A = [ A1, A3; A2, A4], then
 % AInv = inv(A) = 1/(A1*A4 - A3*A2) * [A4, -A3; -A2,  A1].
 
-%oneOverdetInv = 1./(A1 .* intval(A4) - A3 .* intval(A2));
 oneOverdetInv = 1./(intval(A1) .* A4 - A3 .* intval(A2));
 AI1 = oneOverdetInv .* A4;
 AI2 = -oneOverdetInv .* A2;
