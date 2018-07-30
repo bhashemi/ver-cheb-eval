@@ -3,13 +3,14 @@ function [p, tLohnerQR_vec] = ICA_QR_err_vec(x, intCoeffs)
 % algorithm as a discrete dynamical system. 
 % The input x is a column vector.
 
-% We explicitly compute an interval matrix containing the exact QR 
+% We explicitly compute an interval matrix B_exact containing the exact QR 
 % decomposition of 2 x 2 matrices (explicit in the sense that we don't call
 % MATLAB's qr command as it does not make sense for vectors of evaluation 
 % points). We then choose B (which is needed only approximately) to be the 
-% midpoint of that interval matrix. We then need an enclosure for the exact
-% inverse of mid(B), which simply belongs to B.'. So, there is no need to
-% matrix inversion or calling verifylss.
+% midpoint of B_exact. We then need an enclosure for the exact inverse of B, 
+% which simply belongs to the transpose of the interval matrix which contins
+% B, i.e., B^{-1} \in B_exact^T. So, there is no need to verified matrix 
+% inversion e.g., verifylss.
 
 tic
 M1 = 2*intval(x.'); % Entry (1,1) of M.
