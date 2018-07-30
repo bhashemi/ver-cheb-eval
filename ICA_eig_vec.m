@@ -1,6 +1,10 @@
 function [pTrans, tTrans] = ICA_eig_vec(t, intCoeffs)
-% Spectral transformation of interval Clenshaw algorithm.
-% This is a vectorized code.
+% Spectral transformation of Clenshaw algorithm when 
+% considered as a discrete dynamical system. This is
+% a vectorized code implemented in interval arithmetic.
+% t contains evaluation points which could be either a 
+% non-interval or interval vector.
+% intCoeffs is the vector of Chebyshev coefficients.
 
 tic
 j = size(t,1);
