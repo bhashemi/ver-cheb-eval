@@ -1,8 +1,9 @@
 clc, clear all
+% Illustrate linear complexity of three algorithms in the repository.
 
 %% First choose approprate values of lambda so that the corresponding 
 % randnfun has appropriate degrees
-lam = [0.100000000000001; %102
+lam = [0.100000000000001; % corresponds to length 102
 0.04; % 225
 0.0164  % 453
 0.00771  % 901
@@ -34,7 +35,7 @@ for i=1:sz
     [p_para(:,i), t_para(i)] = ICA_para_err_vec(x, intCoeffs);
     [p_ICA_eig_err(:,i), t_ICA_eig_err(i)] = ICA_eig_err_vec(x, intCoeffs);
 end
-%n
+
 %%
 close all
 MS = 'markersize'; ms = 10;
@@ -51,17 +52,13 @@ plot(n,t_para, 'r-', LW, lw);
 plot(n,n/n(1)*t_ICA_eig_err(1), 'g--')
 plot(n,t_ICA_eig_err, 'g-', LW, lw);
 
-
 leg = legend('t = \alpha n', 'ICA-QR-err', 't = \beta n', 'para', ...
     't = \gamma n', 'ICA-eig-err', 'location', 'nw');
 set(leg, FS, fs)
-
 xlabel('degree n', FS, fs+3)
 ylabel('time t', FS, fs+3)
 title('Verified evaluation at 20 points', FS, fs)
 grid on
-print(gcf,'-depsc','/Users/user/Desktop/My work/git/ver-cheb-eval/draft/figures/time_methods');
-%caption: linear complexity of vectorized implementations of three methods
 
 %%
 [mean(-log10(rad(p_para)))'   mean(-log10(rad(p_LohnerQR)))' ...
