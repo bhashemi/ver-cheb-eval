@@ -3,7 +3,7 @@ Verified evaluation of finite Chebyshev expansions
 =============================
 This repository contains implementation of ten different algorithms for computing narrow enclosures for finite Chebyshev expansions of the form
 
-$ p(x) = coeffs(1) T_0(x) + coeffs(1) T_1(x) + ... + coeffs(n) T_{n-1}(x)$. 
+$p(x) = \sum_{k=0}^n c_k T_k(x)$. 
 
 While some of the algorithms are already known, the mathematics behind new algorithms is described in an accompanying preprient. 
 
