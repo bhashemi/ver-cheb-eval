@@ -7,17 +7,12 @@ LW = 'LineWidth'; lw = 4;
 loyolagray = 1/255*[200,200,200];
 format short e
 
-%% Produce some Chebyshev coefficients
+%% Generate some Chebyshev coefficients
 f = randnfun(0.0007)
 coeffs = real(f.coeffs);
 %% Prepare coefficients of different radii
 %intCoeffs = coeffs;
-%intCoeffs = infsup(1-eps, 1+eps) * coeffs;
-
 intCoeffs = midrad(coeffs, 10*eps);
-
-%intCoeffs = midrad(coeffs, 10^5*eps);
-
 maxrad_coeffs = max(rad(intCoeffs))
 
 %% Adjust size of coefficients for the VERIFYFFT in barycentric method
@@ -34,25 +29,13 @@ len = size(intCoeffs,1)
 newSize = (2^nextpow2(2*len-2) + 2)/2;
 dif = newSize - len;
 baryCoeffs = [intCoeffs; zeros(dif,1)];
-%lenBary = size(baryCoeffs,1);
-% max(abs(baryCoeffs(1:size(intCoeffs,1)) - intCoeffs)) = 0
 
 %% Prepare evaluation points
-%t = 2*intval(rand(1000,1))-1; % bary is the best with this choice of points
-%numpts = 10;
-
 numpts = 1000;
-rng(1), t = 2*rand(numpts,1)-1; % bary is the best with this choice of points
-% AND f = randnfun(0.0007) or with f = chebfun(@(x) 100*sin(1./(x+1.003)))
-
-%t = 2*rand(100,1)-1;
-%[~,ind] = sort(mid(t));
+rng(1), t = 2*rand(numpts,1)-1; 
 [~,ind] = sort(t);
 t = t(ind);
-%  
 t = midrad(mid(t), 10*eps);
-%t = midrad(mid(t), 10^5*eps);
-
 l = size(t,1);
 maxrad_pts = max(rad(t))
 
@@ -273,12 +256,8 @@ set(h,'FaceColor', [0.85 0.33 0.1]);
 
 xlim([0,i+1])
 ylabel('time (sec)', FS, fs)
-
 ax = gca;
 set(ax,'xtick',1:i);
 xticklabels(ax, {'d-cos-acos', 'd-div-con', 'ICA-eig', 'ICA-eig-err', 'bary', 'bary \cap d-cos-acos'});
 ax.XTickLabelRotation = 45;
-
-%text(-10.1,63,['degree = ' num2str(size(intCoeffs,1)-1) ',  rad(c) = ' num2str(maxrad_coeffs) ',    l = ' num2str(l) ',   rad(x) = ' num2str(maxrad_pts)], FS, fs)
 text(-9,31.5,['degree = ' num2str(size(intCoeffs,1)-1) ',  rad(c) = ' num2str(maxrad_coeffs,2) ',    l = ' num2str(l) ',   rad(x) = ' num2str(maxrad_pts,2)], FS, fs)
-print(gcf,'-depsc','/Users/user/Desktop/My work/git/ver-cheb-eval/draft/figures/ex9_2');
