@@ -1,6 +1,5 @@
-%% Chebfun/feval analysis
-clc, 
-clear all, close all, 
+%% Forward error analysis of Chebfun/feval
+clc, clear all, close all, 
 rng(1)
 FS = 'fontsize'; fs = 15;
 LW = 'LineWidth'; lw = 4;
@@ -11,14 +10,6 @@ dom = [-1, 1];
 
 %% Generate some Chebyshev coefficients
 f = cheb.gallery('sinefun1')
-
-%f = cheb.gallery('sinefun2')
-%f = cheb.gallery('seismograph')
-%f = cheb.gallery('spikycomb')
-%zigzag
-%f = chebfun(@exp)
-
-%f = cheb.gallery('wiggly')
 %dom = f.domain
 coeffs = f.coeffs;
 intCoeffs = coeffs;
@@ -37,11 +28,8 @@ len = size(intCoeffs,1)
 newSize = (2^nextpow2(2*len-2) + 2)/2;
 dif = newSize - len;
 baryCoeffs = [intCoeffs; zeros(dif,1)];
-%lenBary = size(baryCoeffs,1);
-% max(abs(baryCoeffs(1:size(intCoeffs,1)) - intCoeffs)) = 0
 
 %% Choose evaluation points
-%numpts = 10;
 numpts = 100;
 t = 2*rand(numpts,1)-1;
 [~,ind] = sort(t);
@@ -56,7 +44,6 @@ end
 %%
 l = size(t,1); % length of the vector of evaluation points
 maxrad_pts = max(rad(t))
-
 check = all(in(t,infsup(-1,1)))
 
 chebvals = f(t);
@@ -115,15 +102,6 @@ ins_double = in(chebvals,pICDC');
 sum_ins_cheb_double = sum(ins_double)
 
 %%
-% %plot(t, ins_double, 'o')
-% %pcolor(ins_double)
-% %plot(f)
-% plot(t,f(t), 'x')
-% hold on;
-% ind=find(~ins_double);
-% plot(t(ind), f(t(ind)), 'ro', MS, ms)
-
-%%
 fprintf('---- ICDC quadruple prec --\n')
 prec = 'quad';
 tic,
@@ -161,10 +139,6 @@ leg = legend('sinefun1', 'floating point values', 'values outside enclosures', .
 set(leg, FS, 12.6)
 set(leg,...
     'Position',[0.146428571428584 0.8738096015794 0.741071428571429 0.0464285714285715])
-%title('a posteriori error analysis of floating point Clenshaw algorithm',FS,fs-1)
-%axis equal
-print(gcf,'-depsc','/Users/user/Desktop/My work/git/ver-cheb-eval/draft/figures/cheb_feval1');
-shg
     
 %% Assemble all the results and create a few plots
 str = {'transf', 'MVF', 'd-div-con',  'bary',  'd-cos-acos'};
@@ -257,7 +231,6 @@ set(ax,'xtick',1:i);
 xticklabels(ax, {'ICA-eig', 'MVF', ...
     'd-div-con', 'bary',  'd-cos-acos'});
 ax.XTickLabelRotation = 90;
-
 xTick=get(gca,'xtick'); 
 xMax=max(xTick);
 xMin=min(xTick);
