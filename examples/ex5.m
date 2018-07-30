@@ -30,8 +30,6 @@ len = size(intCoeffs,1)
 newSize = (2^nextpow2(2*len-2) + 2)/2;
 dif = newSize - len;
 baryCoeffs = [intCoeffs; zeros(dif,1)];
-%lenBary = size(baryCoeffs,1);
-% max(abs(baryCoeffs(1:size(intCoeffs,1)) - intCoeffs)) = 0
 
 %% Prepare evaluation points
 numpts = 10;
@@ -231,5 +229,3 @@ newXTick=linspace(xMin,xMax,i);
 set(gca,'xtick',1:i);
 ax.XTickLabelRotation = 90;
 text(-19,49.5,['degree = ' num2str(size(intCoeffs,1)-1) ',  rad(c) = ' num2str(maxrad_coeffs,2) ',    l = ' num2str(l) ',   rad(x) = ' num2str(maxrad_pts,2)], FS, fs)
-shg
-print(gcf,'-depsc','/Users/user/Desktop/My work/git/ver-cheb-eval/draft/figures/ex7');
